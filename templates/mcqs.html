@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated MCQs</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            text-align: left;
+            margin-top: 5%;
+        }
+        .card-body {
+            text-align: left;
+        }
+        .correct-answer {
+            display: none;
+            font-weight: bold;
+            color: green;
+        }
+        .form-check-label.correct {
+            font-weight: bold;
+            color: green;
+        }
+        .form-check-label.incorrect {
+            font-weight: bold;
+            color: red;
+        }
+        .result-message {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .score {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4 text-center">Generated MCQs</h1>
+        <form id="mcq-form">
+            {% for index, mcq in mcqs %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Q{{ index }}: {{ mcq[0] }}?</h5>
+                        <div class="form-group">
+                            {% set options = ['A', 'B', 'C', 'D'] %}
+                            {% for choice_index in range(mcq[1]|length) %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="answer{{ index }}" id="choice{{ index }}{{ choice_index }}" value="{{ options[choice_index] }}">
+                                    <label class="form-check-label" for="choice{{ index }}{{ choice_index }}">
+                                        {{ options[choice_index] }}: {{ mcq[1][choice_index] }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <small class="text-muted correct-answer" id="correct-answer-{{ index }}">Correct Answer: {{ mcq[2] }}</small>
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="button" class="btn btn-primary" id="submit-btn">Submit</button>
+        </form>
+        <div id="result-section" class="mt-4">
+            <p class="result-message"></p>
+            <p class="score"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('submit-btn').addEventListener('click', function() {
+            var totalQuestions = document.querySelectorAll('.card').length;
+            var correctCount = 0;
+
+            for (var i = 0; i < totalQuestions; i++) {
+                var correctAnswerElement = document.getElementById('correct-answer-' + (i + 1));
+                if (!correctAnswerElement) continue;  // Skip if there's no correct answer element
+
+                var correctAnswerText = correctAnswerElement.textContent.split(': ')[1].trim();
+                var selectedOption = document.querySelector('input[name="answer' + (i + 1) + '"]:checked');
+                
+                var options = document.querySelectorAll('input[name="answer' + (i + 1) + '"]');
+                options.forEach(function(option) {
+                    var label = option.parentElement.querySelector('.form-check-label');
+                    if (option.value === correctAnswerText) {
+                        label.classList.add('correct');
+                    } else if (option.checked) {
+                        label.classList.add('incorrect');
+                    }
+                });
+
+                if (selectedOption && selectedOption.value === correctAnswerText) {
+                    correctCount++;
+                }
+            }
+
+            var resultMessage = "You answered " + correctCount + " out of " + totalQuestions + " questions correctly.";
+            var scorePercentage = (correctCount / totalQuestions) * 100;
+
+            document.querySelector('.result-message').textContent = resultMessage;
+            document.querySelector('.score').textContent = "Score: " + scorePercentage.toFixed(2) + "%";
+            document.getElementById('submit-btn').style.display = 'none';
+            
+            // Show all correct answers
+            var correctAnswerElements = document.getElementsByClassName('correct-answer');
+            for (var i = 0; i < correctAnswerElements.length; i++) {
+                correctAnswerElements[i].style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

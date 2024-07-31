@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Generator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f2f5; /* Light grey background */
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            background: #ffffff; /* White background for the container */
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            padding: 30px;
+            max-width: 600px;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #007bff; /* Bootstrap primary color */
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .form-check-input {
+            margin-right: 10px;
+        }
+        .form-control-file {
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">MCQ Generator</h1>
+        <p class="lead text-center mb-4">Generate multiple-choice questions (MCQs) from your text or uploaded files. Choose the number of questions and get started!</p>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Upload File(s) (PDF or TXT)</label>
+                <input type="file" class="form-control-file" id="file" name="files[]" multiple>
+            </div>
+            <div class="form-group">
+                <label for="num_questions">Number of Questions:</label>
+                <select class="form-control" id="num_questions" name="num_questions">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Generate MCQs</button>
+        </form>
+    </div>
+</body>
+</html>
