@@ -1,0 +1,6 @@
+spacy
+Flask
+flask_bootstrap
+PyPDF2
+en_core_web_sm
+Flask-Session
