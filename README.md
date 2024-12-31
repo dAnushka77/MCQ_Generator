@@ -21,7 +21,7 @@ The following Python libraries are required to run the script:
    pip install spacy
 
 2. Install spaCy and the required model:
-  ```bash
+   ```bash
    pip install spacy
-  python -m spacy download en_core_web_sm
+   python -m spacy download en_core_web_sm
 
