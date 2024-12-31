@@ -26,5 +26,3 @@ Install spaCy and the required model:
   pip install spacy
   python -m spacy download en_core_web_sm
 
-## 🤝 Contributions
-Contributions, suggestions, and feedback are welcome! Please create a pull request or open an issue for discussions
