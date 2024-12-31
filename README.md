@@ -16,12 +16,11 @@ The following Python libraries are required to run the script:
 - `random`
 - `collections.Counter`
 
-Install the dependencies using pip:
-
+1. Install the dependencies using pip:
    ```bash
    pip install spacy
 
-Install spaCy and the required model:
+2. Install spaCy and the required model:
   ```bash
   pip install spacy
   python -m spacy download en_core_web_sm
