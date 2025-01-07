@@ -25,3 +25,10 @@ The following Python libraries are required to run the script:
    pip install spacy
    python -m spacy download en_core_web_sm
 
+## Output
+
+![image](https://github.com/user-attachments/assets/ee58bd19-460f-4446-9cfa-bfa8c1855d6b)
+
+![image](https://github.com/user-attachments/assets/f034a1b6-c2e0-4f8d-a6dc-e92223b0a533)
+
+
